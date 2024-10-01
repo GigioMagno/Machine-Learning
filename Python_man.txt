@@ -1,0 +1,262 @@
+%%%%%%%%%%%%%%%%%% IMPORTAZIONE LIBRERIE %%%%%%%%%%%%%%%%%%
+SI USA LA PAROLA CHIAVE IMPORT:
+							
+		import library_name as abbreviazione
+
+
+
+
+%%%%%%%%%%%%%%%%%% LETTURA CSV DENTRO AD UN DATAFRAME %%%%%%%%%%%%%%%%%%%%%%%%
+SI USA LA FUNZIONE read_csv DELLA LIBRERIA pandas:
+		
+		dataframe = pandas.read_csv('pathname_file_csv')
+
+
+
+
+%%%%%%%%%%%%%%%%%% INFORMAZIONI SULLA GRANDEZZA DEL DATAFRAME %%%%%%%%%%%%%%%%%%
+		
+		dataframe.shape
+
+SI NOTI CHE SHAPE RISULTA ESSERE UN ATTRIBUTO DEL DATAFRAME (CHE È UN OGGETTO)
+
+
+
+
+%%%%%%%%%%%%%%%%%% MOSTRARE LE PRIME N RIGHE DEL DATAFRAME %%%%%%%%%%%%%%%%%%
+SI USA LA FUNZIONE head CHE È UN METODO DELL'OGGETTO DATAFRAME
+		
+		dataframe.head(N)
+
+SE N NON È SPECIFICATA LA FUNZIONE MOSTRA SOLO LE PRIME 5 RIGHE DEL DATAFRAME
+
+
+
+%%%%%%%%%%%%%%%%%% MOSTRARE LE ULTIME N RIGHE DEL DATAFRAME %%%%%%%%%%%%%%%%%%
+SI USA LA FUNZIONE tail CHE È UN METODO DELL'OGGETTO DATAFRAME
+
+		dataframe.tail(N)
+
+
+
+%%%%%%%%%%%%%%%%%% MOSTRARE IL DATATYPE DI OGNI COLONNA %%%%%%%%%%%%%%%%%% 
+SI CONSULTA L'ATTRIBUTO dtypes DELL'OGGETTO DATAFRAME
+
+		dataframe.dtypes
+
+
+
+%%%%%%%%%%%%%%%%%% ACCEDERE AD UNA COLONNA DEL DATAFRAME %%%%%%%%%%%%%%%%%%
+POSSO CHIAMARE LE COLONNE COME SE FOSSERO ATTRIBUTI DELL'OGGETTO OPPURE POSSO INDICIZZARE IL DATAFRAME COME SE FOSSE UNN ARRAY
+
+		dataframe.name_column
+		dataframe['name_column']
+
+
+
+%%%%%%%%%%%%%%%%%% CONOSCERE IL TIPO DI UN OGGETTO %%%%%%%%%%%%%%%%%%
+POSSO INVOCARE LA FUNZIONE type
+
+		type(object)
+
+
+
+%%%%%%%%%%%%%%%%%% ACCEDERE AD UNA RIGA DEL DATAFRAME %%%%%%%%%%%%%%%%%%
+SI USA IL METODO iloc SPECIFICANDO L'INDICE DELLA RIGA DI INTERESSE
+
+		dataframe.iloc[row]
+
+QUESTO COMANDO RITORNA LA RIGA SPECIFICATA ALL'INDICE ROW
+
+
+
+%%%%%%%%%%%%%%%%%% SELEZIONARE TUTTE LE RIGHE DI UN DATAFRAME E UNA SPECIFICA COLONNA %%%%%%%%%%%%%%%%%%
+SI USA SEMPRE IL METODO iloc MA SPECIFICO TUTTI GLI ELEMENTI CON ':' E L'N-ESIMA COLONNA
+
+		dataframe.iloc[:,N]
+
+
+
+%%%%%%%%%%%%%%%%%% UTILIZZARE UNA LISTA COME INDICE DI RIGA E UNA SPECIFICA COLONNA %%%%%%%%%%%%%%%%%% 
+
+		dataframe.iloc[[element1, element2,...], N]
+
+%%%%%%%%%%%%%%%%%% CREAZIONE DI UNA LISTA %%%%%%%%%%%%%%%%%%
+
+		list = [element1, element2, ... , elementN]
+
+CREARE UNA LISTA DI ELEMENTI DA a A b
+
+		l = list(range(a,b))
+
+
+
+%%%%%%%%%%%%%%%%%% ESTRARRE GLI ULTIMI N ELEMENTI DI UN DATAFRAME %%%%%%%%%%%%%%%%%%
+
+		dataframe.iloc[-N,:]
+
+
+
+%%%%%%%%%%%%%%%%%% SELEZIONARE USANDO IL METODO loc TUTTE LE RIGHE CHE CORRISPONDONO ALLA COLONNA CHIAMATA column %%%%%%%%%%%%%%%%%%
+
+		dataframe.loc[:, 'column']
+
+OVVIAMENTE 'COLUMN' PUÒ ESSERE SOSTITUITO DA UNA LISTA DI STRINGHE CHE SONO NOMI DELLE COLONNE DEL DATAFRAME
+
+
+%%%%%%%%%%%%%%%%%% SELEZIONARE ELEMENTI DI UN ARRAY DA a A b %%%%%%%%%%%%%%%%%%
+
+		Arrayname[a:b+1]
+
+a È IL PUNTO DI PARTENZA, b È IL PUNTO DI FINE, MA b NON È INCLUSO. QUINDI SE VOGLIO CONSIDERARE ANCHE L'ELEMENTO b DEVO AGGIUNGERE 1. IN PYTHON TUTTI GLI INTERVALLI SONO APERTI A DESTRA. [a,b)
+
+
+
+%%%%%%%%%%%%%%%%%% SELEZIONARE SU UN ATTRIBUTO %%%%%%%%%%%%%%%%%%
+
+		dataframe.attribute == 'string'
+		dataframe.attribute == number
+
+QUESTO CONFRONTO RITORNA UN VETTORE DI TRUE/FALSE. SE UNA RIGA DEL DATAFRAME SODDISFA LA CONDIZIONE IN CORRISPONDENZA DELL'INDICE DI QUELLA RIGA TROVEREMO UN TRUE
+UN VETTORE DI TRUE/FALSE PUÒ INDICIZZARE ANCHE UN DATAFRAME. VERRANNO SELEZIONATE TUTTE LE RIGHE IN CORRISPONDENZA DEL TRUE.
+
+
+
+
+%%%%%%%%%%%%%%%%%% SELEZIONE LOGICA MULTIPLA %%%%%%%%%%%%%%%%%%
+Condizioni in and &
+
+		dataframe.loc[(condizione 1) & (condizione 2)]
+
+IMPORTANTE PYTHON È SCEMO, DEVO METTERE LE CONDIZIONI 1 E 2 TRA PARENTESI TONDE.
+
+L'OPERATORE OR SI INDICA CON |
+
+
+
+%%%%%%%%%%%%%%%%%% CONTROLLARE SE IL VALORE DI UN PARTICOLARE ATTRIBUTO FA PARTE DI UNA LISTA DI ELEMENTI %%%%%%%%%%%%%%%%%%
+SI USA LA FUNZIONE isin E GLI SI DA IN INPUT UNA LISTA
+
+		dataframe.loc[dataframe.attribute.isin([element1, element2, ..., elementN])]
+
+LA FUNZIONE isin RITORNA UN ARRAY LOGICO DI TRUE O FALSE
+
+
+
+%%%%%%%%%%%%%%%%%% CONTROLLARE I VALORI NULLI RELATIVI AD UN ATTRIBUTO %%%%%%%%%%%%%%%%%%
+SI USA LA FUNZIONE notnull() INVOCATA SU UN CERTO ATTRIBUTO
+
+		dataframe.attribute.notnull()
+
+RITORNA UN VETTORE LOGICO DI TRUE O FALSE. NELLE RIGHE DOVE HO IL TRUE  IL VALORE DI QUELL'ATTRIBUTO NON È NULL
+
+
+
+%%%%%%%%%%%%%%%%%% AGGIUNGERE UNA COLONNA AD UN DATAFRAME %%%%%%%%%%%%%%%%%%
+
+		dataframe["new_column"] = list of value to fill the column
+
+
+
+
+%%%%%%%%%%%%%%%%%% OTTENERE QUALCHE STATISTICA SUL DATAFRAME %%%%%%%%%%%%%%%%%%
+
+		dataframe.attribute.describe()
+		dataframe.describe()
+
+RITORNA DELLE STATISTICHE SUI DATI. NEL PRIMO CASO STATISTICHE SULL'ATTRIBUTO, NEL SECONDO CASO SONO GENERALI
+
+
+
+%%%%%%%%%%%%%%%%%% MEDIA DI UNA SERIE DI UN DATAFRAME %%%%%%%%%%%%%%%%%%
+LE SERIE SONO LE COLONNE DEL DATAFRAME
+
+		dataframea.attribute.mean()
+
+
+
+%%%%%%%%%%%%%%%%%% OTTENERE QUANTI SINGOLI ELEMENTI CI SONO IN UNA SERIE %%%%%%%%%%%%%%%%%%
+
+		dataframe.attribute.unique()
+
+RITORNA UN VETTORE CON TUTTI I VALORI UNICI DI QUELL'ATTRIBUTO, NON MOSTRA DUPLICATI
+
+
+
+%%%%%%%%%%%%%%%%%% CONTARE LE OCCORRENZE DI UN VALORE IN UNA SERIE %%%%%%%%%%%%%%%%%%
+
+		dataframe.attribute.value_counts()
+
+
+
+%%%%%%%%%%%%%%%%%% RAGGRUPPARE SECONDO UN CERTO ATTRIBUTO %%%%%%%%%%%%%%%%%%
+
+		dataframe.groupby('column_name')
+
+
+
+%%%%%%%%%%%%%%%%%% LAMBDA FUNCTION %%%%%%%%%%%%%%%%%%
+SONO COME FUNZIONI ANONIME, LE USO QUANDO DEVO SCRIVERE UN PICCOLO PEZZO DI CODICE E NON VALE LA PENA SCRIVERE UNA FUNZIONE APPOSITA.
+LA USO CHIAMANDO LA FUNZIONE APPLY SULL'OGGETTO SU CUI LA VOGLIO APPLICARE.
+
+		dataframe. .... (calling various functions) .... .apply(lambda dataframe: dataframe)
+
+IN QUESTO CASO LA FUNZIONE LAMBDA RICEVE COME INPUT IL DATAFRAME E LO RESTITUISCE (FUNZIONE IDENTITÀ)
+OVVIAMENTE LA FUNZIONE LAMBDA È SCRITTA A SECONDA DEL NOSTRO SCOPO.
+
+
+
+
+%%%%%%%%%%%%%%%%%% MAX IN UNA SERIE %%%%%%%%%%%%%%%%%%
+
+		dataframe.series.max() 			-> returns the maximum in the series
+		dataframe.series.idxmax()		-> returns the index of the maximum value
+
+
+
+%%%%%%%%%%%%%%%%%% RINOMINARE UNA COLONNA DEL DATAFRAME %%%%%%%%%%%%%%%%%%
+
+		dataframe.rename(columns={'actual_name' : 'new_name'}, inplace=True)
+
+COLUMNS È COME SE FOSSE UNA KEYWORD. LE COLONNE SONO MEMORIZZATE IN UN DICTIONARY {KEY:VALUE}
+
+
+
+
+%%%%%%%%%%%%%%%%%% CONTROLLARE SE UN DATO È MANCANTE %%%%%%%%%%%%%%%%%%
+
+		dataframe[pandas.isnull(dataframe.attribute)]
+
+
+
+%%%%%%%%%%%%%%%%%% RIEMPIRE VALORI N.A. (NOT AVAILABLE) %%%%%%%%%%%%%%%%%%
+
+		dataframe['column_name'] = dataframe.column_name.fillna('string to fill the N.A.')
+
+
+
+%%%%%%%%%%%%%%%%%% SOSTITUIRE IL VALORE DI UN ATTRIBUTO CON UN ALTRO %%%%%%%%%%%%%%%%%%
+
+		dataframe['column_name'] = dataframe.column_name.replace('Actual value', 'new value')
+
+
+
+%%%%%%%%%%%%%%%%%% DIZIONARI %%%%%%%%%%%%%%%%%%
+STRUTTURA DATI CHE CONTIENE COPPIE CHIAVE:VALORE
+LO SI INIZIALIZZA IN QUESTO MODO:
+		
+		dictionary = {}
+
+
+SE VOGLIO INSERIRGLI QUALCHE VALORE, POSSO FARE IN QUESTO MODO:
+
+		dictionary = {'key1':value1, 'key2':value2, ... , 'keyN':valueN}
+
+
+
+%%%%%%%%%%%%%%%%%% ACCEDERE AI VALORI DI UNA RIGA DEL DATAFRAME %%%%%%%%%%%%%%%%%%
+
+		dataframe.values[number_of_the_row]
+
+
+
